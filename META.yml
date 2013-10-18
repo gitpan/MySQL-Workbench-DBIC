@@ -6,7 +6,7 @@ build_requires: {}
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.132510'
+generated_by: 'Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.120921'
 license: artistic_2
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -21,4 +21,4 @@ resources:
   bugtracker: http://github.com/reneeb/MySQL-Workbench-DBIC/issues
   homepage: http://github.com/reneeb/MySQL-Workbench-DBIC
   repository: git://github.com/reneeb/MySQL-Workbench-DBIC.git
-version: 0.01
+version: 0.02
