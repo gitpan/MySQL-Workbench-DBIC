@@ -26,7 +26,7 @@ my %WriteMakefileArgs = (
     "MySQL::Workbench::Parser" => "0.01"
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.02",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => "t/*.t"
   }

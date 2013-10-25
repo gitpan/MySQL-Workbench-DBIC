@@ -21,4 +21,4 @@ resources:
   bugtracker: http://github.com/reneeb/MySQL-Workbench-DBIC/issues
   homepage: http://github.com/reneeb/MySQL-Workbench-DBIC
   repository: git://github.com/reneeb/MySQL-Workbench-DBIC.git
-version: 0.02
+version: 0.03
