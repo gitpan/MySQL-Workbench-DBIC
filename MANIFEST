@@ -14,7 +14,7 @@ t/03_new_parameters.t
 t/04_prefixes.t
 t/07_version.t
 t/08_columns_detailed.t
-t/98_perl_critic.t
+t/09_version_add.t
 t/boilerplate.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
