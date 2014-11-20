@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 10;
+use Test::More;
 use FindBin ();
 
 BEGIN {
@@ -13,7 +13,7 @@ BEGIN {
 #use MySQL::Workbench::DBIC::FakeDBIC;
 
 my $bin         = $FindBin::Bin;
-my $file        = $bin . '/test.mwb';
+my $file        = $bin . '/uppercase.mwb';
 my $namespace   = 'MyApp::DB';
 my $output_path = $bin . '/Test';
 
@@ -22,6 +22,9 @@ my $foo = MySQL::Workbench::DBIC->new(
     output_path => $output_path,
     namespace   => $namespace,
     version_add => 2,
+    uppercase   => 1,
+    schema_name => 'Schema',
+    column_details => 1,
 );
 
 isa_ok( $foo, 'MySQL::Workbench::DBIC', 'object is type M::W::D' );
@@ -36,34 +39,31 @@ $foo->create_schema;
 
 my $subpath = $output_path . '/' . $path;
 ok( -e $subpath , 'Path ' . $subpath . ' created' );
-ok( -e $subpath . '/DBIC_Schema.pm', 'Schema' );
-ok( -e $subpath . '/DBIC_Schema/Result/Gefa_User.pm', 'Gefa_User' );
-ok( -e $subpath . '/DBIC_Schema/Result/UserRole.pm', 'UserRole' );
-ok( -e $subpath . '/DBIC_Schema/Result/Role.pm', 'Role' );
+ok( -e $subpath . '/Schema.pm', 'Schema' );
+ok( -e $subpath . '/Schema/Result/UserGroups.pm', 'UserGroups' );
 
 my $lib_path = _untaint_path($output_path);
 
 my $version;
 eval {
-    eval "use lib '$lib_path'";
-    require MyApp::DB::DBIC_Schema;
-    $version = MyApp::DB::DBIC_Schema->VERSION;
+    require MyApp::DB::Schema;
+    $version = MyApp::DB::Schema->VERSION;
 } or diag $@;
 is $version, 2, 'check version';
 
 $foo->create_schema;
 eval{
-    delete $INC{"MyApp/DB/DBIC_Schema.pm"};
-    require MyApp::DB::DBIC_Schema;
-    $version = MyApp::DB::DBIC_Schema->VERSION;
+    delete $INC{"MyApp/DB/Schema.pm"};
+    require MyApp::DB::Schema;
+    $version = MyApp::DB::Schema->VERSION;
 } or diag $@;
 is $version, 4, 'check version 4';
 
 $foo->create_schema;
 eval{
-    delete $INC{"MyApp/DB/DBIC_Schema.pm"};
-    require MyApp::DB::DBIC_Schema;
-    $version = MyApp::DB::DBIC_Schema->VERSION;
+    delete $INC{"MyApp/DB/Schema.pm"};
+    require MyApp::DB::Schema;
+    $version = MyApp::DB::Schema->VERSION;
 } or diag $@;
 is $version, 6, 'check version 6';
 
@@ -72,6 +72,8 @@ eval{
     $output_path = _untaint_path( $output_path );
     rmdir $output_path;
 };
+
+done_testing();
 
 sub rmtree{
     my ($path) = @_;

@@ -18,6 +18,8 @@ t/08_columns_detailed.t
 t/09_version_add.t
 t/10_uppercase.t
 t/11_uppercase_relationships.t
+t/12_uppercase_version_add.t
+t/13_non_inc_version_add.t
 t/boilerplate.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
