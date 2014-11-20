@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-
+use 5.010001;
 
 use ExtUtils::MakeMaker ;
 
@@ -23,9 +23,10 @@ my %WriteMakefileArgs = (
     "Carp" => 0,
     "File::Spec" => "3.40",
     "Moo" => "1.003001",
-    "MySQL::Workbench::Parser" => "0.03"
+    "MySQL::Workbench::Parser" => "0.03",
+    "Test::LongString" => "0.16"
   },
-  "VERSION" => "0.05",
+  "VERSION" => "0.06",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -36,7 +37,8 @@ my %FallbackPrereqs = (
   "Carp" => 0,
   "File::Spec" => "3.40",
   "Moo" => "1.003001",
-  "MySQL::Workbench::Parser" => "0.03"
+  "MySQL::Workbench::Parser" => "0.03",
+  "Test::LongString" => "0.16"
 );
 
 

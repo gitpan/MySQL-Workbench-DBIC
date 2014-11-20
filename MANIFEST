@@ -17,6 +17,7 @@ t/07_version.t
 t/08_columns_detailed.t
 t/09_version_add.t
 t/10_uppercase.t
+t/11_uppercase_relationships.t
 t/boilerplate.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
