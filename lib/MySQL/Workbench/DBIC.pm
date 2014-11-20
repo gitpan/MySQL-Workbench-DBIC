@@ -11,10 +11,11 @@ use MySQL::Workbench::Parser;
 
 # ABSTRACT: create DBIC scheme for MySQL workbench .mwb files
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 has output_path    => ( is => 'ro', required => 1, default => sub { '.' } );
 has file           => ( is => 'ro', required => 1 );
+has uppercase      => ( is => 'ro' );
 has namespace      => ( is => 'ro', isa => sub { $_[0] =~ m{ \A [A-Z]\w*(::\w+)* \z }xms }, required => 1, default => sub { '' } );
 has schema_name    => ( is => 'rwp', isa => sub { $_[0] =~ m{ \A [A-Za-z0-9_]+ \z }xms } );
 has version_add    => ( is => 'ro', required => 1, default => sub { 0.01 } );
@@ -187,7 +188,12 @@ sub _class_template{
     my ($self,$table,$relations) = @_;
     
     my $name    = $table->name;
-    my $package = $self->namespace . '::' . $self->schema_name . '::Result::' . $name;
+    my $class   = $name;
+    if ( $self->uppercase ) {
+        $class = join '', map{ ucfirst $_ }split /[_-]/, $name;
+    }
+
+    my $package = $self->namespace . '::' . $self->schema_name . '::Result::' . $class;
        $package =~ s/^:://;
     
     my ($has_many, $belongs_to) = ('','');
@@ -335,13 +341,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 MySQL::Workbench::DBIC - create DBIC scheme for MySQL workbench .mwb files
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
@@ -375,6 +383,7 @@ to new:
     use_fake_dbic     => 1, # default 0.
     belongs_to_prefix => 'fk_',
     has_many_prefix   => 'has_',
+    uppercase         => 1,
   );
 
 C<use_fake_dbic> is helpful when C<DBIx::Class> is not installed on the
@@ -466,13 +475,18 @@ creates (col1 is the column name of the foreign key)
 
   __PACKAGE__->belongs_to( 'fk_col1' => 'OtherTable', {'foreign.col1' => 'self.col1' } );
 
+=head2 uppercase
+
+When C<uppercase> is set to true the package names are CamelCase. Given the table names I<user>, I<user_groups> and
+I<groups>, the package names would be I<*::User>, I<*::UserGroups> and I<*::Groups>.
+
 =head1 AUTHOR
 
 Renee Baecker <reneeb@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by Renee Baecker.
+This software is Copyright (c) 2014 by Renee Baecker.
 
 This is free software, licensed under:
 

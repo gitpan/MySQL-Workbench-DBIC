@@ -23,13 +23,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 MySQL::Workbench::DBIC::FakeDBIC - provide some DBIx::Class method stubs when DBIx::Class is not installed 
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 DESCRIPTION
 
@@ -42,7 +44,7 @@ Renee Baecker <reneeb@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by Renee Baecker.
+This software is Copyright (c) 2014 by Renee Baecker.
 
 This is free software, licensed under:
 
