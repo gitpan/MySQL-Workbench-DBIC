@@ -23,10 +23,10 @@ my %WriteMakefileArgs = (
     "Carp" => 0,
     "File::Spec" => "3.40",
     "Moo" => "1.003001",
-    "MySQL::Workbench::Parser" => "0.03",
+    "MySQL::Workbench::Parser" => "0.04",
     "Test::LongString" => "0.16"
   },
-  "VERSION" => "0.07",
+  "VERSION" => "0.08",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -37,7 +37,7 @@ my %FallbackPrereqs = (
   "Carp" => 0,
   "File::Spec" => "3.40",
   "Moo" => "1.003001",
-  "MySQL::Workbench::Parser" => "0.03",
+  "MySQL::Workbench::Parser" => "0.04",
   "Test::LongString" => "0.16"
 );
 

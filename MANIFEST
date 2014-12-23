@@ -20,9 +20,13 @@ t/10_uppercase.t
 t/11_uppercase_relationships.t
 t/12_uppercase_version_add.t
 t/13_non_inc_version_add.t
+t/14_indexes.t
+t/15_no_indexes.t
 t/boilerplate.t
+t/m_to_n.mwb
 t/release-pod-coverage.t
 t/release-pod-syntax.t
 t/test.mwb
+t/test.mwb.bak
 t/uppercase.mwb
 t/uppercase.mwb.bak
